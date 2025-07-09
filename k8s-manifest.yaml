@@ -1,0 +1,119 @@
+# Kubernetes Manifest for Full Stack Todo App
+# This file contains Deployment, Service, and Ingress resources for Kind
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fullstack-todo-app
+  labels:
+    app: fullstack-todo-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fullstack-todo-app
+  template:
+    metadata:
+      labels:
+        app: fullstack-todo-app
+    spec:
+      containers:
+      - name: fullstack-todo-app
+        image: fullstack-todo-app:latest
+        imagePullPolicy: IfNotPresent  # Use local image for Kind
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "3000"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+        livenessProbe:
+          httpGet:
+            path: /api/todos
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /api/todos
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: todo-app-pvc
+
+---
+# Persistent Volume Claim for data storage
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: todo-app-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
+# Service to expose the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: fullstack-todo-service
+  labels:
+    app: fullstack-todo-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 3000
+    targetPort: 3000
+    protocol: TCP
+  selector:
+    app: fullstack-todo-app
+
+---
+# Ingress to provide external access
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: fullstack-todo-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: todo-app.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: fullstack-todo-service
+            port:
+              number: 3000
+
+---
+# ConfigMap for any configuration (optional)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-app-config
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
