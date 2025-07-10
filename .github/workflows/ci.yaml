@@ -92,7 +92,7 @@ jobs:
     - name: Update image tag in Helm values.yaml
       run: |
         # Update the tag in Helm values.yaml
-        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/fullstack-todo-app/values.yaml
+        sed -i 's/tag: .*/tag: "${{github.run_id}}"/' helm/fullstack-todo-app-charts/values.yaml
 
     - name: Commit and push changes
       run: |
