@@ -174,26 +174,6 @@ docker run -p 3000:3000 todo-app
 **"Module not found"**
 - Solution: Run `npm install` to install dependencies
 
-## 🔄 Next Steps & Enhancements
-
-### Beginner Level:
-- [ ] Change the app title and colors
-- [ ] Add more todo fields (priority, due date)
-- [ ] Add todo categories/tags
-
-### Intermediate Level:
-- [ ] Add user authentication (login/signup)
-- [ ] Use a real database (SQLite, PostgreSQL)
-- [ ] Add search and filter functionality
-- [ ] Add drag-and-drop reordering
-
-### Advanced Level:
-- [ ] Real-time updates with WebSockets
-- [ ] PWA (Progressive Web App) features
-- [ ] API authentication with JWT tokens
-- [ ] Automated testing with Jest
-- [ ] CI/CD pipeline with GitHub Actions
-
 ## 🤝 Contributing
 
 This is a learning project! Feel free to:
