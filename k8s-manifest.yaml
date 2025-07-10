@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: fullstack-todo-app
-        image: vanshitsharma07/fullstack-todo-app:16192597917
+        image: vanshitsharma07/fullstack-todo-app:16192611787
         imagePullPolicy: Always  # Changed to pull from Docker Hub
         ports:
         - containerPort: 3000
