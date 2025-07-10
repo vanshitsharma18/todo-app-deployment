@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App - Full Stack</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📝 My Todo App</h1>
+            <p>A simple full stack application</p>
+        </header>
+
+        <main>
+            <div class="todo-form">
+                <input type="text" id="todoInput" placeholder="Add a new todo..." maxlength="100">
+                <button id="addBtn">Add Todo</button>
+            </div>
+
+            <div class="todo-stats">
+                <span id="totalTodos">Total: 0</span>
+                <span id="completedTodos">Completed: 0</span>
+            </div>
+
+            <div class="todo-list" id="todoList">
+                <!-- Todos will be dynamically added here -->
+            </div>
+
+            <div class="empty-state" id="emptyState">
+                <p>🎉 No todos yet! Add one above to get started.</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
