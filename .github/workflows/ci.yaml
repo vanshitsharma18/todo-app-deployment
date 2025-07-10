@@ -87,7 +87,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        token: ${{ secrets.TOKEN }}
+        token: ${{ secrets.token }}
 
     - name: Update image tag in K8s manifest
       run: |
