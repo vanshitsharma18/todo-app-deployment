@@ -5,33 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App - Full Stack By Vanshit Sharma</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="background-animation">
+        <div class="floating-shape shape1"></div>
+        <div class="floating-shape shape2"></div>
+        <div class="floating-shape shape3"></div>
+        <div class="floating-shape shape4"></div>
+    </div>
+
     <div class="container">
         <header>
-            <h1>📝 My Todo App</h1>
-            <p>A simple full stack application</p>
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tasks"></i>
+                    <span>TodoMaster</span>
+                </div>
+                <h1>Organize Your Life</h1>
+                <p>Stay productive with your personal task manager</p>
+            </div>
         </header>
 
         <main>
             <div class="todo-form">
-                <input type="text" id="todoInput" placeholder="Add a new todo..." maxlength="100">
-                <button id="addBtn">Add Todo</button>
+                <div class="input-group">
+                    <i class="fas fa-plus input-icon"></i>
+                    <input type="text" id="todoInput" placeholder="What needs to be done?" maxlength="100">
+                    <button id="addBtn">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Task</span>
+                    </button>
+                </div>
             </div>
 
             <div class="todo-stats">
-                <span id="totalTodos">Total: 0</span>
-                <span id="completedTodos">Completed: 0</span>
+                <div class="stat-card">
+                    <i class="fas fa-list-ul"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="totalTodos">0</span>
+                        <span class="stat-label">Total Tasks</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-check-circle"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="completedTodos">0</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-info">
+                        <span class="stat-number" id="pendingTodos">0</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                </div>
             </div>
 
-            <div class="todo-list" id="todoList">
-                <!-- Todos will be dynamically added here -->
-            </div>
+            <div class="todo-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-tasks"></i> Your Tasks</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="active">Active</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
 
-            <div class="empty-state" id="emptyState">
-                <p>🎉 No todos yet! Add one above to get started.</p>
+                <div class="todo-list" id="todoList">
+                    <!-- Todos will be dynamically added here -->
+                </div>
+
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-illustration">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>No tasks yet!</h3>
+                    <p>Add your first task above to get started on your journey to productivity.</p>
+                </div>
             </div>
         </main>
+
+        <footer>
+            <p>Built with ❤️ by Vanshit Sharma</p>
+        </footer>
     </div>
 
     <script src="script.js"></script>
