@@ -8,7 +8,7 @@ image:
   repository: vanshitsharma07/fullstack-todo-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "16193502602"
+  tag: "16213581712"
 
 ingress:
   enabled: false
